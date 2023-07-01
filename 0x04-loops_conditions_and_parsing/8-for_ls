@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # This script displays the content of the current directory
 
-for file in *; do
-	if [[ -f $file && $file != .* && $file =~ -(.*) ]]; then
-		echo "${BASH_REMATCH[1]}"
-	fi
+dir=$(ls)
+
+for directory in $dir; do
+	echo "$directory" | cut -d '-' -f2
 done
