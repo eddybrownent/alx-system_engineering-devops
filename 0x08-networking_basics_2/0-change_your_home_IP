@@ -3,7 +3,7 @@
 # localhost resolves to 127.0.0.2
 # facebook.com resolves to 8.8.8.8
 
-sudo cp /etc/hosts ~/temp_hosts
-sudo echo "127.0.0.2		localhost" > ~/temp_hosts
-sudo echo "8.8.8.8		facebook.com" >> ~/temp_hosts
-sudo cp -f ~/temp_hosts /etc/hosts
+cp /etc/hosts ~/hosts.temp
+echo "127.0.0.2		localhost" > ~/hosts.temp
+echo "8.8.8.8		facebook.com" >> ~/hosts.temp
+cp -f ~/hosts.temp /etc/hosts

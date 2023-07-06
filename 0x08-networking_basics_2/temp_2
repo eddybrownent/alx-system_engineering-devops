@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo cp /etc/hosts.bak /etc/hosts
+echo "127.0.0.1 localhost" | sudo tee /etc/hosts >/dev/null
