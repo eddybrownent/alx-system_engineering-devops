@@ -9,10 +9,10 @@ apt-get install -y nginx
 ufw allow "Nginx HTTP"
 
 # Creating a HTML file
-echo "Hello World!" > /var/www/html/index.html
+echo "Hello World                 " > | tee /var/www/html/index.html
 
 # Checking Nginx configuration
 nginx -t
 
 # Reloads Nginx service
-service  nginx reload
+service  nginx restart
