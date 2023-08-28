@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Installing nginx and configuring
+
+# Updating package lists and installing nginx
+apt-get update
+apt-get install -y nginx
+
+# Allowing Nginx HTTP traffic
+ufw allow "Nginx HTTP"
+
+# Creating a HTML file
+echo "Hello World!" > /var/www/html/index.html
+
+# Checking Nginx configuration
+nginx -t
+
+# Reloads Nginx service
+service  nginx reload
