@@ -9,7 +9,7 @@ apt-get install -y nginx
 ufw allow "Nginx HTTP"
 
 # Creating a HTML file
-echo "Hello World" > /var/www/html/index.nginx-debian.html
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
 
 # Checking Nginx configuration
 nginx -t
