@@ -16,12 +16,12 @@ service { 'nginx':
 
 # Configuring the redirection nginx server
 exec { 'configure-nginx-redirect':
-  command => '/bin/bash -c "sed -i \'s/server_name _;/server_name _;\n\n  location = \\/redirect_me { return 301 http:\\/\\/www.youtube.com\\/watch?v=QH2-TGUlwu4; }/\' /etc/nginx/sites-available/default"',
+  command => 'sed -i \'s/server_name _;/server_name _;\n\n  location = \\/redirect_me { return 301 http:\\/\\/www.youtube.com\\/watch?v=QH2-TGUlwu4; }/\' /etc/nginx/sites-available/default',
 }
 
 # configuring nginx to listen on port 80
 exec { 'configure-nginx-listen':
-  command => '/bin/bash -c "sed -i \'s/listen 80;/listen 80 default_server;/\' /etc/nginx/sites-available/default"',
+  command => 'sed -i \'s/listen 80;/listen 80 default_server;/\' /etc/nginx/sites-available/default',
   require => Package['nginx'],
 }
 
@@ -30,3 +30,5 @@ file { '/var/www/html/index.html':
   ensure  => present,
   content => "Hello World!",
 }
+
+
