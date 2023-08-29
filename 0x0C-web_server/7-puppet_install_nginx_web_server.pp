@@ -19,5 +19,5 @@ file_line { 'config':
 
 # creating a page that returns Hello World!
 file {'/var/www/html/index.html':
-  content  => 'Hello',
+  content  => 'Hello World!',
 }
