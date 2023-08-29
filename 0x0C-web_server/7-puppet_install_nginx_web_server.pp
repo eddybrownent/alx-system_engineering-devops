@@ -28,7 +28,7 @@ exec { 'configure-nginx-listen':
 # creatinag a page that returns Hello World!
 file { '/var/www/html/index.html':
   ensure  => present,
-  content => "Hello World!",
+  content => "Hello World!\n",
 }
 
 # Restarting nginx
