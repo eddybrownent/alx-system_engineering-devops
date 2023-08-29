@@ -16,8 +16,8 @@ service { 'nginx':
 
 # Configuring the redirection nginx server
 exec { 'configure-nginx-redirect':
-  command  => 'sed -i \'s/server_name _;/server_name _;\n\n  location = \\/redirect_me \
-              { return 301 http:\\/\\/www.youtube.com\\/watch?v=QH2-TGUlwu4; }/\' /etc/nginx/sites-available/default',
+  command  => 'sed -i \'s/server_name _;\n\trewrite ^\/redirect_me https:\\/\\/www.youtube.com\\/watch?v=QH2-TGUlwu4 permanent \
+  /etc/nginx/sites-enabled/default,'
   provider => shell,
 }
 
@@ -29,12 +29,13 @@ exec { 'configure-nginx-listen':
 }
 
 # creatinag a page that returns Hello World!
-file { '/var/www/html/index.html':
-  ensure  => present,
-  content => 'Hello World!',
+exec {'Helloworld-file':
+  command  => 'echo "Hello World!" > /var/www/html/index.html',
+  provider => shell,
 }
 
 # Restarting nginx
 exec {'restart':
-  command => 'service nginx restart',
+  command  => 'service nginx restart',
+  provider => shell,
 }
