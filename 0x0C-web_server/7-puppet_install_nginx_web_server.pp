@@ -26,7 +26,7 @@ exec { 'configure-nginx-listen':
 }
 
 # creatinag a page that returns Hello World!
-file { '/var/www/html/index.html':
+file { '/var/www/html/index.nginx-debian.html':
   ensure  => present,
   content => "Hello World!\n",
 }
