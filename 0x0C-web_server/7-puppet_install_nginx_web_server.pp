@@ -16,7 +16,7 @@ service { 'nginx':
 
 # Configuring the redirection nginx server
 exec { 'configure-nginx-redirect':
-  command => '/bin/bash -c "sed -i \'s/server_name _;/server_name _;\n\n  location = \\/redirect_me \\/{ return 301 http:\\/\\/www.youtube.com\\/watch?v=QH2-TGUlwu4; }/\' /etc/nginx/sites-available/default"',
+  command => '/bin/bash -c "sed -i \'s/server_name _;/server_name _;\n\n  location = \\/redirect_me { return 301 http:\\/\\/www.youtube.com\\/watch?v=QH2-TGUlwu4 permanent; }/\' /etc/nginx/sites-available/default"',
 }
 
 # configuring nginx to listen on port 80
