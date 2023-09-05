@@ -10,7 +10,7 @@ package { 'nginx':
 
 # Configure nginx to add a custom header
 file {'/etc/nginx/sites-enabled/default':
-  ensure  => present,
+  ensure  => file,
   content => "add_header X-Served-By \$hostname;",
   require => Package['nginx'],
 }
