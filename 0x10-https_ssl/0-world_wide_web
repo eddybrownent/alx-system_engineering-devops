@@ -4,15 +4,15 @@
 
 # Function that fetches subdomain infor
 subdomain_info() {
-	local domain="$1"
-	local subdomain="$2"
+	domain="$1"
+	subdomain="$2"
 
 	# extract information using dig and awk
-	output=$(dig "$subdomain.$domain" | awk '/^;; ANSWER SECTION:$/,/^$/')
+	output=$(dig "$subdomain.$domain" | grep -A1 'ANSWER SECTION:')
 
 	# extract record type and IP
-	record_type=$(echo "$output" | awk '/^.*IN\s+[A-Z]+/ {print $4}')
-	IP_address=$(echo "$output"| awk '/^.*IN\s+[A-Z]+/ {print $5}')
+	record_type=$(echo "$output" | awk '/IN\s+[A-Z]+/ {print $4}')
+	IP_address=$(echo "$output" | awk '/IN\s+A/ {print $5}')
 
 	#printing the results
 	echo "The subdomain $subdomain is a $record_type record and points to $IP_address"
