@@ -8,7 +8,7 @@ subdomain_info() {
 	local subdomain="$2"
 
 	# extract information using dig and awk
-	output=$(dig "$subdomain"."$domain" | awk '/^;; ANSWER SECTION:$/,/^$/')
+	output=$(dig "$subdomain.$domain" | awk '/^;; ANSWER SECTION:$/,/^$/')
 
 	# extract record type and IP
 	record_type=$(echo "$output" | awk '/^.*IN\s+[A-Z]+/ {print $4}')
