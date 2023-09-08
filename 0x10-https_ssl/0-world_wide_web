@@ -26,6 +26,5 @@ if [ $# -eq 1 ]; then
 	done
 elif [ $# -eq 2 ]; then
 	# When domain & subdomain are provided give infor of the exact subdomain
-	subdomain="$2"
-	subdomain_info "$1" "$subdomain"
+	subdomain_info "$1" "$2"
 fi
