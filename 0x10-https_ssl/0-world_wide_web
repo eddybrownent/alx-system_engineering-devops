@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# This script Displays information of subdomains
+# How to use: ./1-world_wide_web <domain> <subdomain>
+
+# Function that fetches subdomain infor
+subdomain_info() {
+	local domain="$1"
+	local subdomain="$2"
+
+	# extract information using dig and awk
+	output=$(dig "$subdomain"."$domain" | awk '/^;; ANSWER SECTION:$/,/^$/')
+
+	# extract record type and IP
+	record_type=$(echo "$output" | awk '/^.*IN\s+[A-Z]+/ {print $4}')
+	IP_address=$(echo "$output"| awk '/^.*IN\s+[A-Z]+/ {print $5}')
+
+	#printing the results
+	echo "The subdomain $subdomain is a $record_type record and points to $IP_address"
+}
+
+if [ $# -eq 1 ]; then
+	# When only domain is provided, display infor for default subdomains
+	subdomains=("www" "lb-01" "web-01" "web-02")
+	for subdomain in "${subdomains[@]}"; do
+		subdomain_info "$1" "$subdomain"
+	done
+elif [ $# -eq 2 ]; then
+	# When domain & subdomain are provided give infor of the exact subdomain
+	subdomain="$2"
+	subdomain_info "$1" "$subdomain"
+fi
