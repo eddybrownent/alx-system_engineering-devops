@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Generates a MySQL dump and creates a compressed archive out of it
+
+# MySQL database credentials
+DB_USER="root"
+DB_PASS="$1"
+
+# MySQL dump command to backup all databases
+mysqldump -u "$DB_USER" -p"$DB_PASS" --all-databases > backup.sql
