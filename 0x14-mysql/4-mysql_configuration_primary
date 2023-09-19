@@ -37,3 +37,5 @@ server-id = 1
 # bind-address  = 127.0.0.1
 # Disabling symbolic-links is recommended to prevent assorted security risks
 symbolic-links=0
+
+binlog_do_db    = tyrell_corp
