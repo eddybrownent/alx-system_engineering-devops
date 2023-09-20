@@ -5,7 +5,7 @@
 sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
 
 # Adjust the Nginx configuration to listen on all active IPs on port 8080
-sed -i "s/listen 80 default_server/listen 8080 default_server/g" /etc/nginx/sites-available/default
+sed -i "s/listen 80 default_server/listen 8080 default_server/g" /etc/nginx/sites-enabled/default
 
 # give owner permissions to read and write to the config file
 chmod 644 /etc/nginx/nginx.conf
