@@ -7,3 +7,6 @@ DB_PASS="$1"
 
 # MySQL dump command to backup all databases
 mysqldump -u "$DB_USER" -p"$DB_PASS" --all-databases > backup.sql
+
+# Create a tar-gzipped archive
+tar -czf $(date +%d-%m-%Y).tar.gz backup.sql
