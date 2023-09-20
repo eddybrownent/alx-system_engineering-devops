@@ -5,7 +5,13 @@
 sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
 
 # Adjust the Nginx configuration to listen on all active IPs on port 8080
-sed -i "s/listen 80 default_server/listen 8080 default_server/g" /etc/nginx/sites-enabled/default
+sed -i "s/listen 80 default_server/listen 8080 default_server/g" /etc/nginx/sites-available/default
+
+# Remove the default symlink (if it exists)
+rm -f /etc/nginx/sites-enabled/default
+
+# Create a new symlink for the default configuration
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 
 # give owner permissions to read and write to the config file
 chmod 644 /etc/nginx/nginx.conf
@@ -14,4 +20,4 @@ chmod 644 /etc/nginx/nginx.conf
 pkill apache2
 
 # Start Nginx as the nginx user
-sudo -u nginx service nginx start
+sudo -u nginx service nginx restart
