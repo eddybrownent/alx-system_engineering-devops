@@ -4,9 +4,7 @@
 import sys
 import requests
 
-""" Checking if script is being executed as main """
 if __name__ == '__main__':
-    """ extract employee ID from the command-line argument """
     em_id = sys.argv[1]
 
     """ Defining the base URL for the API """
@@ -29,12 +27,9 @@ if __name__ == '__main__':
 
     """ Extract the list of tasks from the JSON response """
     tasks = response.json()
-
-    """ counters for completed tasks and a list to store them """
     done = 0
     done_tasks = []
 
-    """ Iterate through the tasks counting completed tasks and store """
     for task in tasks:
         if task.get('completed'):
             done_tasks.append(task)
