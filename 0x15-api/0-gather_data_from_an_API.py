@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Accessing a REST API for todo lists of employees"""
 
-import request
+import requests
 import sys
 
 if __name__ == '__main__':
