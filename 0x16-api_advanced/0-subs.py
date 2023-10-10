@@ -17,7 +17,7 @@ def number_of_subscribers(subreddit):
 
     if subreddit is None or not isinstance(subreddit, str):
         return 0
-    
+
     user_agent = {'User-agent': 'MyRedditBot/1.0'}
     url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
 
