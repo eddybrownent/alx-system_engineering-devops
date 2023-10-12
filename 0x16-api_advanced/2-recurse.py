@@ -22,16 +22,20 @@ def recurse(subreddit, hot_list=[], after=None):
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     parameters = {'after': after}
 
-    response = requests.get(url, params=parameters,
-                            headers=user_agent, allow_redirects=False)
+    try:
+        response = requests.get(url, params=parameters,
+                                headers=user_agent, allow_redirects=False)
 
-    if response.status_code == 200:
-        after_data = response.json().get("data").get("after")
-        if after_data is not None:
-            hot_list = recurse(subreddit, hot_list, after=after_data)
-        children = response.json().get("data").get("children")
-        for child in children:
-            hot_list.append(child.get("data").get("title"))
-        return hot_list
-    else:
+        if response.status_code == 200:
+            data = response.json().get("data")
+            after_data = data.get("after")
+            if after_data is not None:
+                hot_list = recurse(subreddit, hot_list, after=after_data)
+            children = data.get("children")
+            for child in children:
+                hot_list.append(child.get("data").get("title"))
+            return hot_list
+        else:
+            return None
+    except requests.exceptions.RequestException:
         return None
