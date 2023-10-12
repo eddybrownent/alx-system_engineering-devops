@@ -7,7 +7,7 @@ from requests import get
 
 def number_of_subscribers(subreddit):
     """
-    This finction queries the Reddit API and returns the number of subscribers
+    This function queries the Reddit API and returns the number of subscribers
     (total subscribers) for a given subreddit
     Args:
         subreddit: The name of the subreddit to query
