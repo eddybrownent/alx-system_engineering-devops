@@ -8,6 +8,16 @@ import requests
 
 
 def recurse(subreddit, hot_list=[], after=None):
+    """
+    Recursively fetches the titles of hot articles for a given subreddit.
+    Args:
+    subreddit (str): The name of the subreddit to fetch hot articles from.
+    hot_list (list, optional): A list to store the titles of hot articles.
+    after (str, optional): A Reddit API parameter
+    Returns:
+    list: A list of titles of hot articles from the subreddit or
+    None in case of error
+    """
     user_agent = {'User-agent': 'MyRedditBot/1.0'}
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     parameters = {'after': after}
