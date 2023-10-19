@@ -3,12 +3,12 @@
 
 # increase the ULIMIT of the default file
 exec { 'fix--for-nginx':
-  command => '/bin/sed -i "s/15/4096/" /etc/default/nginx',
+  command => '/bin/sed -i "s/15/5000/" /etc/default/nginx',
   path    => '/usr/local/bin/:/bin/'
 }
 
 # Restart Nginx
 exec { 'nginx-restart':
-  command => 'systemctl restart nginx',
-  path    => '/bin/:/usr/bin/:/usr/sbin/'
+  command => 'service nginx restart',
+  path    => '/usr/local/bin/:/bin/'
 }
